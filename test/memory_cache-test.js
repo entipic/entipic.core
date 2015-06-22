@@ -1,33 +1,37 @@
-var vows = require('vows'),
-	assert = require('assert');
-
+var assert = require('chai').assert;
 var MemoryCache = require('../lib').MemoryCache;
 
-vows.describe('MemoryCache').addBatch({
-	'Default MemoryCache object': {
-		topic: new MemoryCache(),
+describe('MemoryCache', function() {
+	describe('Empty Default MemoryCache', function() {
+		var topic = new MemoryCache();
 
-		'instanceOf': function(topic) {
+		it('instanceOf', function() {
 			assert.instanceOf(topic, MemoryCache);
-		},
-		'empty options': function(topic) {
-			assert.isEmpty(topic.options);
-		},
-		'empty storage': function(topic) {
-			assert.isEmpty(topic.storage);
-			topic.set('key1', 'value1', {
-				ttl: 1000 * 10
-			});
-		},
-		'not empty storage': function(topic) {
+		});
+		it('empty options', function() {
+			assert.equal(Object.keys(topic.options).length, 0);
+		});
+		it('empty storage', function() {
+			assert.equal(Object.keys(topic.storage).length, 0);
+		});
+	});
+
+	describe('Not Empty Default MemoryCache', function() {
+		var topic = new MemoryCache();
+
+		topic.set('key1', 'value1', {
+			ttl: 1000 * 10
+		});
+
+		it('not empty storage', function() {
 			assert.equal(Object.keys(topic.storage).length, 1);
-		},
-		'key exists': function(topic) {
+		});
+		it('key exists', function() {
 			assert.equal(topic.get('key1'), 'value1');
+		});
+		it('key not exists', function() {
 			topic.remove('key1');
-		},
-		'key not exists': function(topic) {
-			assert.strictEqual(topic.get('key1'), undefined);
-		}
-	}
-}).export(module);
+			assert.equal(topic.get('key1'), undefined);
+		});
+	});
+});

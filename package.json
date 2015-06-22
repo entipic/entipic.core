@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "vows --spec"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "errod": "0.0.4"
   },
   "devDependencies": {
-    "vows": "^0.8.1"
+    "mocha": "^2.2.5",
+    "chai": "^3.0.0"
   }
 }
