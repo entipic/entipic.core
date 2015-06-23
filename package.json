@@ -29,8 +29,6 @@
     "node-uuid": "^1.4.2",
     "winston": "^0.9.0",
     "winston-loggly": "^1.0.2",
-    "diacritics": "^1.2.1",
-    "slug": "^0.9.1",
     "errod": "0.0.4"
   },
   "devDependencies": {
