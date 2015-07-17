@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('chai').assert;
 var errors = require('../lib').errors;
 
@@ -8,7 +10,7 @@ describe('Errors', function() {
 			assert.instanceOf(topic, errors.BaseError);
 		});
 		it('should not be logged', function() {
-			assert.equal(topic._logged, false);
+			assert.equal(topic.isLogged(), false);
 		});
 		it('should have name BaseError', function() {
 			assert.equal(topic.name, 'BaseError');
